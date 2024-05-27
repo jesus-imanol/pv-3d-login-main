@@ -5,6 +5,7 @@ import { getParticipants } from "../../data/BD";
 import Button from "../atoms/Button";
 import Label from '../atoms/Label';
 import H6 from '../atoms/Descrition';
+import CardsView from '../molecules/CardsView';
 
 function SectionView() {
     const [participantsView, setParticipantsView] = useState([]);
@@ -14,12 +15,11 @@ function SectionView() {
         for (let i = getParticipants().length - 1; i >= 0; i--) {
             let participant = getParticipants()[i];
             participantsCards.push(
-                <div className="cards_user" key={participant.user}>
-                <Label text={participant.user}></Label>
-                <Label text={participant.email}></Label>
-                <Label text={participant.password}></Label>
-                    <img src={participant.img} className="img_cards" alt={`Participant`} />
-                </div>
+                <CardsView key={participant.user}  
+                user={participant.user} 
+                email={participant.email} 
+                password={participant.password}>
+                </CardsView>
             );
         }
 
